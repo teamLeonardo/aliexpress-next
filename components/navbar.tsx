@@ -1,144 +1,72 @@
 import {
 	Navbar as NextUINavbar,
 	NavbarContent,
-	NavbarMenu,
-	NavbarMenuToggle,
 	NavbarBrand,
-	NavbarItem,
-	NavbarMenuItem,
 } from "@nextui-org/navbar";
-import { Button } from "@nextui-org/button";
-import { Kbd } from "@nextui-org/kbd";
-import { Link } from "@nextui-org/link";
+
+import { RiShoppingCartLine } from "react-icons/ri"
 import { Input } from "@nextui-org/input";
 
-import { link as linkStyles } from "@nextui-org/theme";
 
-import { siteConfig } from "@/config/site";
 import NextLink from "next/link";
-import clsx from "clsx";
 
-import { ThemeSwitch } from "@/components/theme-switch";
 import {
-	TwitterIcon,
-	GithubIcon,
-	DiscordIcon,
-	HeartFilledIcon,
 	SearchIcon,
 } from "@/components/icons";
 
-import { Logo } from "@/components/icons";
+import Image from "next/image";
+import { UiBadge } from "./uiBadge";
 
 export const Navbar = () => {
 	const searchInput = (
 		<Input
 			aria-label="Search"
 			classNames={{
-				inputWrapper: "bg-default-100",
-				input: "text-sm",
+				inputWrapper: "relative w-auto overflow-hidden h-[36px] pl-[16px] pr-[0] py-[0] border-[2px] border-solid border-[#ff4747] border-r-[0] rounded-tl-[1px] rounded-bl-[1px]",
+				input: "relative block w-full h-full pl-[0] pr-[10px] py-[11px] leading-[18px] text-[13px] border-[0] font-[arial] ",
 			}}
 			endContent={
-				<Kbd className="hidden lg:inline-block" keys={["command"]}>
-					K
-				</Kbd>
+				<div className="right-[0] top-[0] w-[40px] h-[36px] bg-[#ff4747] cursor-pointer flex justify-center items-center">
+					<SearchIcon className="text-white pointer-events-none w-[50px]" />
+				</div>
 			}
 			labelPlacement="outside"
 			placeholder="Search..."
-			startContent={
-				<SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
-			}
 			type="search"
 		/>
 	);
 
 	return (
-		<NextUINavbar maxWidth="xl" position="sticky">
-			<NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-				<NavbarBrand as="li" className="gap-3 max-w-fit">
+		<NextUINavbar maxWidth="xl" className="pb-[34px] bg-[#ffffff]" position="sticky">
+			<NavbarContent className="basis-1/5" justify="start">
+				<NavbarBrand as="li" className="gap-3">
 					<NextLink className="flex justify-start items-center gap-1" href="/">
-						<Logo />
-						<p className="font-bold text-inherit">ACME</p>
+						{/* <div className="w-[150px] min-h-[50px] bg-[url()]"></div> */}
+						<Image alt="a" className="w-full" width={150} height={30} src={"https://ae01.alicdn.com/kf/S46f745032e6e4f3da94f1a3df564f238K/398x92.png"}></Image>
 					</NextLink>
 				</NavbarBrand>
-				<ul className="hidden lg:flex gap-4 justify-start ml-2">
-					{siteConfig.navItems.map((item) => (
-						<NavbarItem key={item.href}>
-							<NextLink
-								className={clsx(
-									linkStyles({ color: "foreground" }),
-									"data-[active=true]:text-primary data-[active=true]:font-medium"
-								)}
-								color="foreground"
-								href={item.href}
-							>
-								{item.label}
-							</NextLink>
-						</NavbarItem>
-					))}
-				</ul>
-			</NavbarContent>
 
+			</NavbarContent>
+			{/* <div class="search-key-box">
+				<input type="text" placeholder="netflix españa" maxlength="50" autocomplete="off" value="" name="SearchText" class="search-key" id="search-key">
+			</div> */}
 			<NavbarContent
-				className="hidden sm:flex basis-1/5 sm:basis-full"
+				className="hidden sm:flex basis-3/5 "
+				justify="center"
+			>{searchInput}
+			</NavbarContent>
+			<NavbarContent
+				className="flex basis-1/5 justify-between items-center"
 				justify="end"
 			>
-				<NavbarItem className="hidden sm:flex gap-2">
-					<Link isExternal href={siteConfig.links.twitter} aria-label="Twitter">
-						<TwitterIcon className="text-default-500" />
-					</Link>
-					<Link isExternal href={siteConfig.links.discord} aria-label="Discord">
-						<DiscordIcon className="text-default-500" />
-					</Link>
-					<Link isExternal href={siteConfig.links.github} aria-label="Github">
-						<GithubIcon className="text-default-500" />
-					</Link>
-					<ThemeSwitch />
-				</NavbarItem>
-				<NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
-				<NavbarItem className="hidden md:flex">
-					<Button
-            isExternal
-						as={Link}
-						className="text-sm font-normal text-default-600 bg-default-100"
-						href={siteConfig.links.sponsor}
-						startContent={<HeartFilledIcon className="text-danger" />}
-						variant="flat"
-					>
-						Sponsor
-					</Button>
-				</NavbarItem>
-			</NavbarContent>
-
-			<NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-				<Link isExternal href={siteConfig.links.github} aria-label="Github">
-					<GithubIcon className="text-default-500" />
-				</Link>
-				<ThemeSwitch />
-				<NavbarMenuToggle />
-			</NavbarContent>
-
-			<NavbarMenu>
-				{searchInput}
-				<div className="mx-4 mt-2 flex flex-col gap-2">
-					{siteConfig.navMenuItems.map((item, index) => (
-						<NavbarMenuItem key={`${item}-${index}`}>
-							<Link
-								color={
-									index === 2
-										? "primary"
-										: index === siteConfig.navMenuItems.length - 1
-										? "danger"
-										: "foreground"
-								}
-								href="#"
-								size="lg"
-							>
-								{item.label}
-							</Link>
-						</NavbarMenuItem>
-					))}
+				<UiBadge classBadge="bg-[#ff4747] text-[#ffffff] cursor-pointer" isInvisible={false} content={50} shape="circle" >
+					<RiShoppingCartLine className="cursor-pointer" size={30}></RiShoppingCartLine>
+				</UiBadge>
+				<div className="w-[140px] h-auto self-start">
+					<img className="w-full h-full" src="https://ae01.alicdn.com/kf/S24de37b6a76348e1841be18f537f72adt/240x168.png" alt="" />
 				</div>
-			</NavbarMenu>
+			</NavbarContent>
+
 		</NextUINavbar>
 	);
 };
