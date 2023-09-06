@@ -35,25 +35,29 @@ export default function RootLayout({
 			<head />
 			<body
 				className={clsx(
-					"min-h-screen bg-[#f2f2f2] font-sans antialiased text-[#222] text-sm w-full h-full",
 					fontSans.variable
 				)}
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-					<div className="min-w-[720px] h-[80px] overflow-hidden">
-						<a
-							className="block w-full h-full [text-indent:-9999rem] bg-no-repeat bg-top bg-[url(https://ae01.alicdn.com/kf/S6667168b09424a1aa80245f88826a285Z.png)]"
-							href="https://www.aliexpress.com/gcp/300000544/aEi5KJRwxt?wh_weex=true" aria-label="banner"
-						></a>
-					</div>
-					<div className="m-0 p-0 block">
-						<HeadNavBar></HeadNavBar>
-						<Navbar />
-						<div className="relative mr-auto ml-auto pl-0 pr-0 w-[1200px]">
-							{children}
+					<div
+						className="bg-[#f2f2f2] font-sans antialiased text-[#222] text-sm w-full h-full border-[1px] border-solid border-[transparent]"
+					>
+						<div className="min-w-[720px] h-[80px] overflow-hidden">
+							<a
+								className="block w-full h-full [text-indent:-9999rem] bg-no-repeat bg-top bg-[url(https://ae01.alicdn.com/kf/S6667168b09424a1aa80245f88826a285Z.png)]"
+								href="https://www.aliexpress.com/gcp/300000544/aEi5KJRwxt?wh_weex=true" aria-label="banner"
+							></a>
 						</div>
+						<div className="m-0 p-0 block">
+							<HeadNavBar></HeadNavBar>
+							<Navbar />
+							<div className="relative mr-auto ml-auto pl-0 pr-0 w-[1200px]">
+								{children}
+							</div>
 
+						</div>
 					</div>
+
 				</Providers>
 			</body>
 		</html>

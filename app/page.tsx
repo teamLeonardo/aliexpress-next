@@ -7,11 +7,13 @@ import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
 import { SectionCategory } from "@/components/home/sectionCategory";
+import { SuperOfertas } from "@/components/home/superOfertas";
 
 export default function Home() {
 	return (
 		<>
 			<SectionCategory></SectionCategory>
+			<SuperOfertas></SuperOfertas>
 		</>
 	);
 }
